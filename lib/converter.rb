@@ -1,24 +1,24 @@
 require 'json'
 require 'pry'
 
-def read_parse
-title_string = File.read('../data/temp.json')
-title_hash = JSON.parse(title_string)
+def read_parse_sym
+  title_string = File.read('../data/temp.json')
+  title_hash = JSON.parse(title_string)
+  Hash[title_hash.map{|(k,v)| [k.to_sym,v]}]
 end
 
-puts "Enter Title or Multiple Titles (ex: title, title)"
-input_title = gets.chomp.split(", ").map(&:to_sym)
-
-hash = Hash[read_parse.map{|(k,v)| [k.to_sym,v]}]
-
-puts
-puts "Results:"
-
-input_title.each { |title|
-if value = hash[title]
-  puts "#{value}"
-else
+def run
+  puts "Enter Title or Multiple Titles (ex: title, title)"
+  user_input = gets.chomp.split(", ").map(&:to_sym)
   puts
-  puts "*****Error, #{title} not found!******"
+  puts "Results:"
+
+  user_input.each do |title|
+    if value = read_parse_sym[title]
+      puts "#{value}"
+    else
+      puts
+      puts "*****Error, #{title} not found!******"
+    end
+  end
 end
-}
