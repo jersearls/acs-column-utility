@@ -1,3 +1,4 @@
+require '../lib/welcome.rb'
 require 'json'
 require 'pry'
 
@@ -8,7 +9,7 @@ def read_parse_sym
 end
 
 
-def run
+def search
   puts "Enter Title or Multiple Titles (ex: title, title)"
   user_input = gets.chomp.split(", ").map(&:to_sym)
   puts
@@ -23,5 +24,23 @@ def run
       puts
       puts "*****Error, #{title} not found!******"
     end
+  end
+  go_again
+end
+
+def go_again
+puts "Would you like to perform another search? (y/n)"
+choice = gets.chomp.downcase
+  if choice == "y"
+    puts
+    search
+  elsif choice == "n"
+    puts
+    puts "_______________________________________________________"
+    home
+  else
+    puts "Thats not a valid response."
+    puts
+    go_again
   end
 end
