@@ -10,7 +10,8 @@ end
 
 
 def search
-  puts "Enter Title or Multiple Titles (ex: title, title)"
+  puts "Welcome to search! Enter Title or Multiple Titles (ex: title, title)"
+  print "> "
   user_input = gets.chomp.split(", ").map(&:to_sym)
   puts
   puts "RESULTS:"
@@ -30,6 +31,7 @@ end
 
 def go_again
 puts "Would you like to perform another search? (y/n)"
+print "> "
 choice = gets.chomp.downcase
   if choice == "y"
     puts
@@ -38,8 +40,10 @@ choice = gets.chomp.downcase
     puts
     puts "_______________________________________________________"
     home
+  elsif choice == "q" || choice == "quit" || choice == "exit"
+    exit
   else
-    puts "Thats not a valid response."
+    puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
     puts
     go_again
   end
