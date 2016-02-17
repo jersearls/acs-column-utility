@@ -26,8 +26,9 @@ def search
       puts "*****Error, #{title} not found!******"
     end
   end
-  go_again
+go_again
 end
+
 
 def go_again
 puts "Would you like to perform another search? (y/n)"
