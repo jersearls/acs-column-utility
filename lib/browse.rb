@@ -15,11 +15,52 @@ def subject_hash
  26 => "Imputations", 27 => "Employment Status"}
 end
 
-def abbv_hash
-  title_string = File.read('../data/abbv_subject.json')
+def hash(file)
+  title_string = File.read(file)
   title_hash = JSON.parse(title_string)
   Hash[title_hash.map{|(k, v)| [k, v]}]
 end
+
+def again
+puts
+puts "_______________________________________________________"
+puts "Would you like to perform another search? (y/n)"
+print "> "
+choice = gets.chomp.downcase
+  if choice == "y"
+    puts
+    puts "_______________________________________________________"
+    browse
+  elsif choice == "n"
+    puts
+    puts "_______________________________________________________"
+    home
+  elsif choice == "q" || choice == "quit" || choice == "exit"
+    exit
+  else
+    puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
+    puts
+    again
+  end
+end
+
+def title_size
+puts "Type \"full\" to view full titles or \"abbv\" for abbreviated titles"
+print "> "
+choice2 = gets.chomp
+puts
+puts "RESULTS:"
+  if choice2 == "abbv"
+    hash('../data/abbv_subject.json')
+  elsif choice2 == "full"
+    hash('../data/full_subject.json')
+  else
+    puts "*****Error, entry not valid!******"
+    puts
+  title_size
+ end
+end
+
 
 
 
@@ -58,53 +99,24 @@ def browse
   27. Employment Status
 
   """
-
 choose
-
 end
 
 def choose
   print "> "
   choice = gets.chomp.to_i
-
-    case choice
-      when 1..27
-      then
-        if abbv_hash.values.include? subject_hash[choice]
-          puts
-          puts "RESULTS:"
-          abbv_hash.map {|(k, v)|
-            if v == subject_hash[choice]
-                puts k
-            end}
-        end
-      again
-
-      else
-
-        puts "*****Error, entry not valid!******"
-        puts
-        choose
+  puts
+case choice
+    when 1..27
+    then
+        title_size.map {|(k, v)|
+          if v == subject_hash[choice]
+              puts k
+          end}
+    again
     end
-    again
-end
 
-def again
-puts "Would you like to perform another search? (y/n)"
-print "> "
-choice = gets.chomp.downcase
-  if choice == "y"
-    puts
-    browse
-  elsif choice == "n"
-    puts
-    puts "_______________________________________________________"
-    home
-  elsif choice == "q" || choice == "quit" || choice == "exit"
-    exit
-  else
-    puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
-    puts
-    again
-  end
+puts "*****Error, entry not valid!******"
+puts
+choose
 end
