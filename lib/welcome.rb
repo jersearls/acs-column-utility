@@ -2,6 +2,11 @@ require '../lib/search.rb'
 require '../lib/browse.rb'
 require '../lib/convert.rb'
 
+def error
+  puts "*****Error, entry not valid!******"
+  puts
+end
+
 def home
   puts "Welcome to the Edgewater ACS Census Assistant!"
   puts

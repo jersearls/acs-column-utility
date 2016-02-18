@@ -45,14 +45,9 @@ choice = gets.chomp.downcase
   end
 end
 
-def error
-  puts "*****Error, entry not valid!******"
-  puts
-end
-
 def title_size
 puts
-puts "Type \"full\" to view full titles or \"abbv\" for abbreviated titles"
+puts "Type \"full\" to view full column names or \"abbv\" for abbreviated column names"
 print "> "
 choice2 = gets.chomp.downcase
 puts
@@ -148,6 +143,7 @@ case choice
           title_size.map {|(k, v)|
             if v == subject_hash[choice]
               puts k.gsub(/ $/, '')
+              puts
             end}
         else
           error
