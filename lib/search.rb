@@ -29,7 +29,7 @@ end
 def search_hash
   title_string = File.read('../data/full_subject.json')
   title_hash = JSON.parse(title_string)
-  Hash[title_hash.map{|(k, v)| [k.downcase, v.downcase]}]
+  Hash[title_hash.map{|(k, v)| [k.downcase, v]}]
 end
 
 def search
@@ -77,9 +77,19 @@ def user_entry
         puts
         puts "Please enter words or a word to search. (ex. African American)"
         print "> "
-        choice2 = Regexp.new(gets.chomp)
-        puts search_hash.keys.find { |e| choice2 =~ e }
-
+        choice2 = Regexp.new(gets.chomp.downcase)
+        puts
+        puts "*** Results for Subject Area: #{subject_hash[choice]} ***"
+        puts
+          #search_hash.keys.grep choice2
+          search_hash.map do |(k, v)|
+            if v == subject_hash[choice]
+              title = k
+              puts title.lines.grep choice2
+            end
+          end
+        puts
+        puts "*** Search Complete ***"
       search_again
   end
   error
