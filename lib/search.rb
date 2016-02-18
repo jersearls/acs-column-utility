@@ -77,16 +77,9 @@ def user_entry
         puts
         puts "Please enter words or a word to search. (ex. African American)"
         print "> "
-        choice2 = gets.chomp.downcase
-            search_hash.each do |(k, v)|
-              if k.include? choice2
-                puts k.gsub(/ $/, '')
-              else
-                puts "*****Search Complete******"
-                puts
-                search_again
-              end
-            end
+        choice2 = Regexp.new(gets.chomp)
+        puts search_hash.keys.find { |e| choice2 =~ e }
+
       search_again
   end
   error
