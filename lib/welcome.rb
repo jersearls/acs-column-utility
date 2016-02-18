@@ -1,21 +1,34 @@
 require '../lib/search.rb'
 require '../lib/browse.rb'
+require '../lib/convert.rb'
 
 def home
-  puts "Welcome to Edgewater ACS Census Assistant!"
+  puts "Welcome to the Edgewater ACS Census Assistant!"
   puts
-  puts "Would you like to browse existing hive tables or search for a full column name?"
-  puts "Type \"search\" or \"browse\" to get started, or type \"exit\" to quit."
+  puts "Type the corresponding number to browse available columns,
+search column names for keywords or convert selected column names."
+  puts """
+  1. Browse
+  2. Search
+  3. Convert
+  4. Exit
+  """
   print "> "
-  choice = gets.chomp.downcase
-      if choice == "browse" || choice == "b"
+  choice = gets.chomp.to_i
+      if choice == 1
         puts
         browse
-      elsif choice == "search" || choice == "s"
+      elsif choice == 2
         puts
         search
-      elsif choice == "q" || choice == "quit" || choice == "exit"
+      elsif choice == 3
+        puts
+        convert
+      elsif choice == 4
         exit
+      elsif choice == 5
+        pusheen
+        home
       else
         puts "Invalid Entry."
         puts

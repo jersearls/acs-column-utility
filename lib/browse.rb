@@ -1,5 +1,6 @@
 require '../lib/welcome.rb'
 require 'pry'
+require 'json'
 
 def subject_hash
   { 1 => "Race", 2 => "Ancestry", 3 => "Foreign Birth",
@@ -24,7 +25,7 @@ end
 def again
 puts
 puts "_______________________________________________________"
-puts "Would you like to perform another search? (y/n)"
+puts "Would you like to continue browsing? (y/n)"
 print "> "
 choice = gets.chomp.downcase
   if choice == "y"
@@ -44,10 +45,16 @@ choice = gets.chomp.downcase
   end
 end
 
+def error
+  puts "*****Error, entry not valid!******"
+  puts
+end
+
 def title_size
+puts
 puts "Type \"full\" to view full titles or \"abbv\" for abbreviated titles"
 print "> "
-choice2 = gets.chomp
+choice2 = gets.chomp.downcase
 puts
 puts "RESULTS:"
   if choice2 == "abbv"
@@ -55,13 +62,34 @@ puts "RESULTS:"
   elsif choice2 == "full"
     hash('../data/full_subject.json')
   else
-    puts "*****Error, entry not valid!******"
-    puts
+  error
   title_size
  end
 end
 
+def pusheen
 
+  puts """
+              \"MEOW!\"
+  ───────────────────────────────────────
+  ───▐▀▄───────▄▀▌───▄▄▄▄▄▄▄─────────────
+  ───▌▒▒▀▄▄▄▄▄▀▒▒▐▄▀▀▒██▒██▒▀▀▄──────────
+  ──▐▒▒▒▒▀▒▀▒▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄────────
+  ──▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▒▒▒▒▒▒▒▒▀▄──────
+  ▀█▒▒▒█▌▒▒█▒▒▐█▒▒▒▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌─────
+  ▀▌▒▒▒▒▒▒▀▒▀▒▒▒▒▒▒▀▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐───▄▄
+  ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌▄█▒█
+  ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒█▀─
+  ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▀───
+  ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌────
+  ─▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐─────
+  ─▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌─────
+  ──▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐──────
+  ──▐▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▌──────
+  ────▀▄▄▀▀▀▀▀▄▄▀▀▀▀▀▀▀▄▄▀▀▀▀▀▄▄▀────────
+  """
+
+end
 
 
 
@@ -97,7 +125,6 @@ def browse
   25. Health Insurance
   26. Imputations
   27. Employment Status
-
   """
 choose
 end
@@ -105,18 +132,29 @@ end
 def choose
   print "> "
   choice = gets.chomp.to_i
-  puts
 case choice
     when 1..27
     then
-        title_size.map {|(k, v)|
-          if v == subject_hash[choice]
-              puts k
-          end}
+      puts
+      puts "Type \"comma\" for comma separated results or \"line\" for new line separated results"
+      print "> "
+      choice3 = gets.chomp.downcase
+        if choice3 == "comma"
+          title_size.map {|(k, v)|
+            if v == subject_hash[choice]
+              print "#{k.gsub(/ $/, '')}, "
+            end}
+        elsif choice3 == "line"
+          title_size.map {|(k, v)|
+            if v == subject_hash[choice]
+              puts k.gsub(/ $/, '')
+            end}
+        else
+          error
+          browse
+        end
     again
-    end
-
-puts "*****Error, entry not valid!******"
-puts
+end
+error
 choose
 end
