@@ -5,7 +5,7 @@ require 'pry'
 def read_parse_sym
   title_string = File.read('../data/names.json')
   title_hash = JSON.parse(title_string)
-  Hash[title_hash.map{|(k,v)| [k.to_sym,v.gsub(/ $/, '').to_sym]}]
+  Hash[title_hash.map{|(k,v)| [k.downcase.to_sym,v.downcase.gsub(/ $/, '').to_sym]}]
 end
 
 

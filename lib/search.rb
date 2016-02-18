@@ -77,19 +77,42 @@ def user_entry
         puts
         puts "Please enter words or a word to search. (ex. African American)"
         print "> "
-        choice2 = Regexp.new(gets.chomp.downcase)
+        choice2 = gets.chomp.downcase
         puts
-        puts "*** Results for Subject Area: #{subject_hash[choice]} ***"
         puts
-          #search_hash.keys.grep choice2
-          search_hash.map do |(k, v)|
-            if v == subject_hash[choice]
-              title = k
-              puts title.lines.grep choice2
-            end
+        puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
+        print "> "
+        choice3 = gets.chomp.downcase
+          if choice3 == "c"
+              puts "*** Results for Subject Area: #{subject_hash[choice]} ***"
+              puts
+              search_hash.map do |(k, v)|
+                if v == subject_hash[choice]
+                  title = k.to_str
+                  print "#{title}, " if title.include?(choice2)
+                end
+              end
+              puts
+              puts
+              puts "*** Search Complete ***"
+          elsif choice3 == "n"
+              puts "*** Results for Subject Area: #{subject_hash[choice]} ***"
+              puts
+              search_hash.map do |(k, v)|
+                if v == subject_hash[choice]
+                  title = k.to_str
+                  if title.include?(choice2)
+                    puts title
+                    puts
+                  end 
+                end
+              end
+              puts
+              puts "*** Search Complete ***"
+          else
+              error
+              search_again
           end
-        puts
-        puts "*** Search Complete ***"
       search_again
   end
   error

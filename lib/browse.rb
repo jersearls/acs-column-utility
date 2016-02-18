@@ -19,7 +19,7 @@ end
 def hash(file)
   title_string = File.read(file)
   title_hash = JSON.parse(title_string)
-  Hash[title_hash.map{|(k, v)| [k, v]}]
+  Hash[title_hash.map{|(k, v)| [k.downcase, v.downcase]}]
 end
 
 def again
@@ -131,15 +131,15 @@ case choice
     when 1..27
     then
       puts
-      puts "Type \"comma\" for comma separated results or \"line\" for new line separated results"
+      puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
       print "> "
       choice3 = gets.chomp.downcase
-        if choice3 == "comma"
+        if choice3 == "c"
           title_size.map {|(k, v)|
             if v == subject_hash[choice]
               print "#{k.gsub(/ $/, '')}, "
             end}
-        elsif choice3 == "line"
+        elsif choice3 == "n"
           title_size.map {|(k, v)|
             if v == subject_hash[choice]
               puts k.gsub(/ $/, '')
