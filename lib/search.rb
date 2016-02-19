@@ -68,6 +68,23 @@ def search
   user_entry
 end
 
+def search_results
+  puts "*** Results for Subject Area: #{subject_hash[choice]} ***"
+  puts
+  results = []
+  choice2.each do |word|
+    string = word.to_str
+    search_hash.map do |(k, v)|
+      if v == subject_hash[choice]
+        title = k.to_str
+        if title.include? string
+          results << title
+        end
+      end
+    end
+  end
+end
+
 def user_entry
   print "> "
   choice = gets.chomp.to_i
@@ -77,7 +94,7 @@ def user_entry
         puts
         puts "Please enter words or a word to search. (ex. African American)"
         print "> "
-        choice2 = gets.chomp.downcase
+        choice2 = gets.chomp.downcase.split(" ")
         puts
         puts
         puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
@@ -86,27 +103,37 @@ def user_entry
           if choice3 == "c"
               puts "*** Results for Subject Area: #{subject_hash[choice]} ***"
               puts
-              search_hash.map do |(k, v)|
-                if v == subject_hash[choice]
-                  title = k.to_str
-                  print "#{title}, " if title.include?(choice2)
+              results = []
+              choice2.each do |word|
+                string = word.to_str
+                search_hash.map do |(k, v)|
+                  if v == subject_hash[choice]
+                    title = k.to_str
+                    if title.include? string
+                      results << title
+                    end
+                  end
                 end
               end
-              puts
+              print results.uniq.join(", ").to_str
               puts
               puts "*** Search Complete ***"
           elsif choice3 == "n"
               puts "*** Results for Subject Area: #{subject_hash[choice]} ***"
               puts
-              search_hash.map do |(k, v)|
-                if v == subject_hash[choice]
-                  title = k.to_str
-                  if title.include?(choice2)
-                    puts title
-                    puts
-                  end 
+              results = []
+              choice2.each do |word|
+                string = word.to_str
+                search_hash.map do |(k, v)|
+                  if v == subject_hash[choice]
+                    title = k.to_str
+                    if title.include? string
+                      results << title
+                    end
+                  end
                 end
               end
+              puts results.uniq
               puts
               puts "*** Search Complete ***"
           else

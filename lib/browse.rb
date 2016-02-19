@@ -19,7 +19,7 @@ end
 def hash(file)
   title_string = File.read(file)
   title_hash = JSON.parse(title_string)
-  Hash[title_hash.map{|(k, v)| [k.downcase, v.downcase]}]
+  Hash[title_hash.map{|(k, v)| [k.downcase, v]}]
 end
 
 def again
