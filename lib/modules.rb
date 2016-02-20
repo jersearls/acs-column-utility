@@ -19,6 +19,11 @@ module Toolbox
     puts
   end
 
+  def create_hash(file)
+    title_string = File.read(file)
+    JSON.parse(title_string)
+  end
+
   def try_again(action)
     @action = action
     puts

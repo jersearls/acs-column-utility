@@ -3,33 +3,24 @@ require 'json'
 require 'pry'
 
 class Search
-  def initialize
-
-  end
   include Toolbox
-
-  def search_hash
-    title_string = File.read('../data/full_subject.json')
-    title_hash = JSON.parse(title_string)
-    Hash[title_hash.map{|(k, v)| [k.downcase, v]}]
-  end
-
   def start_search
     menu("search")
     user_entry
   end
 
   def search_results
+
     puts
     puts "*** Results for Subject Area: #{subject_hash[@choice]} ***"
     puts
     @results = []
     @choice2.each do |word|
-      string = word.to_str
-      search_hash.map do |(k, v)|
+      search_entry = word.to_str
+      create_hash('../data/full_subject.json').map do |(k, v)|
         if v == subject_hash[@choice]
-          title = k.to_str
-          if title.include? string
+          title = k.downcase.to_str
+          if title.include? search_entry
             @results << title
           end
         end
