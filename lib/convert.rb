@@ -1,4 +1,4 @@
-require '../lib/welcome.rb'
+require '../lib/modules'
 require 'json'
 require 'pry'
 
