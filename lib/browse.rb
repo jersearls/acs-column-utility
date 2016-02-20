@@ -4,7 +4,6 @@ require 'json'
 
 class Browse
   include Toolbox
-
   def hash(file)
     title_string = File.read(file)
     title_hash = JSON.parse(title_string)

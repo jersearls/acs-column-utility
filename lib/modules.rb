@@ -42,23 +42,6 @@ module Toolbox
       end
   end
 
-  def title_size
-  puts
-  puts "Type \"full\" to view full column names or \"abbv\" for abbreviated column names"
-  print "> "
-  choice2 = gets.chomp.downcase
-  puts
-  puts "RESULTS:"
-    if choice2 == "abbv"
-      hash('../data/abbv_subject.json')
-    elsif choice2 == "full"
-      hash('../data/full_subject.json')
-    else
-    error
-    title_size
-   end
-  end
-
   def menu(function)
     @function = function
     puts "Welcome to #{@function}."
@@ -94,7 +77,6 @@ module Toolbox
     27. Employment Status
     """
   end
-
 end
 
 module Pusheen
@@ -121,5 +103,4 @@ module Pusheen
     """
 
   end
-
 end

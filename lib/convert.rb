@@ -3,6 +3,7 @@ require 'json'
 require 'pry'
 
 class Convert
+  include Toolbox
   def read_parse_sym
     title_string = File.read('../data/names.json')
     title_hash = JSON.parse(title_string)
@@ -39,28 +40,11 @@ class Convert
           end
       else
         error
-        convert
+        start_convert
       end
-    go_again
+    try_again("conversion")
+    start_convert
   end
 
-  def go_again
-  puts "Would you like to perform another conversion? (y/n)"
-  print "> "
-  choice = gets.chomp.downcase
-    if choice == "y"
-      puts
-      convert
-    elsif choice == "n"
-      puts
-      puts "_______________________________________________________"
-      home
-    elsif choice == "q" || choice == "quit" || choice == "exit"
-      exit
-    else
-      puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
-      puts
-      go_again
-    end
-  end
+
 end
