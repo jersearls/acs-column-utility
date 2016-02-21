@@ -18,7 +18,7 @@ search column names for keywords or convert selected column names."
   3. Convert
   4. Exit
     """
-    print "> "
+    Log.print "> "
     choice = Log.gets.chomp.to_i
     if choice == 1
       Log.puts

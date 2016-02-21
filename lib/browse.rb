@@ -8,7 +8,7 @@ class Browse
   def title_size
     Log.puts
     Log.puts "Type \"f\" to view full column names or \"a\" for abbreviated column names"
-    print "> "
+    Log.print "> "
     choice2 = Log.gets.chomp.downcase
     Log.puts
     Log.puts "RESULTS:"
@@ -28,19 +28,19 @@ class Browse
   end
 
   def choose
-    print "> "
+    Log.print "> "
     choice = Log.gets.chomp.to_i
     case choice
     when 1..27
       then
       Log.puts
       Log.puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
-      print "> "
+      Log.print "> "
       choice3 = Log.gets.chomp.downcase
       if choice3 == "c"
         title_size.map {|(k, v)|
           if v == subject_hash[choice]
-            print "#{k.downcase.gsub(/ $/, '')}, "
+            Log.print "#{k.downcase.gsub(/ $/, '')}, "
           end}
       elsif choice3 == "n"
         title_size.map {|(k, v)|

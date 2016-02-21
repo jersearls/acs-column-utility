@@ -10,11 +10,11 @@ class Convert
     1. An abbreviated column name to a full column name
     2. A full column name to an abbreviated column name
     """
-    print "> "
+    Log.print "> "
     conchoice = Log.gets.chomp.to_i
     if conchoice == 1 || conchoice == 2
       Log.puts "Enter Title or Multiple Titles to convert (ex: title, title)"
-      print "> "
+      Log.print "> "
       user_input = Log.gets.chomp.split(", ").map(&:to_sym)
       Log.puts
       Log.puts "RESULTS:"

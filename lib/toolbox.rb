@@ -30,7 +30,7 @@ module Toolbox
     Log.puts
     Log.puts "_______________________________________________________"
     Log.puts "Would you like to continue #{@action}? (y/n)"
-    print "> "
+    Log.print "> "
     choice = Log.gets.chomp.downcase
     if choice == "y"
       Log.puts

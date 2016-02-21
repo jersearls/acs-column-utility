@@ -35,19 +35,19 @@ class Search
   end
 
   def user_entry
-    print "> "
+    Log.print "> "
     @choice = Log.gets.chomp.to_i
     case @choice
     when 1..27
       then
       Log.puts
       Log.puts "Please enter words or a word to search. (ex. African American)"
-      print "> "
+      Log.print "> "
       @choice2 = Log.gets.chomp.downcase.split(" ")
       Log.puts
       Log.puts
       Log.puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
-      print "> "
+      Log.print "> "
       choice3 = Log.gets.chomp.downcase
       if choice3 == "c"
         search_results
@@ -56,7 +56,7 @@ class Search
         result_count
       elsif choice3 == "n"
         search_results
-        @results.each {|result| Log.puts result; puts}
+        @results.each {|result| Log.puts result; Log.puts}
         result_count
       else
         error
