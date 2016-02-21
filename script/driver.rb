@@ -2,31 +2,32 @@ require_relative '../lib/search'
 require_relative '../lib/browse'
 require_relative '../lib/convert'
 require_relative '../lib/pusheen'
+require_relative "../lib/log"
 
 require 'pry'
 
 class Driver
   def self.start
-    puts "Welcome to the Edgewater ACS Census Assistant!"
-    puts
-    puts "Type the corresponding number to browse available columns,
+    Log.puts "Welcome to the Edgewater ACS Census Assistant!"
+    Log.puts
+    Log.puts "Type the corresponding number to browse available columns,
 search column names for keywords or convert selected column names."
-    puts """
+    Log.puts """
   1. Browse
   2. Search
   3. Convert
   4. Exit
     """
     print "> "
-    choice = gets.chomp.to_i
+    choice = Log.gets.chomp.to_i
     if choice == 1
-      puts
+      Log.puts
       Browse.new.start_browse
     elsif choice == 2
-      puts
+      Log.puts
       Search.new.start_search
     elsif choice == 3
-      puts
+      Log.puts
       Convert.new.start_convert
     elsif choice == 4
       exit
@@ -34,9 +35,9 @@ search column names for keywords or convert selected column names."
       Pusheen.meow
       start
     else
-      puts "Invalid Entry."
-      puts
-      puts "_______________________________________________________"
+      Log.puts "Invalid Entry."
+      Log.puts
+      Log.puts "_______________________________________________________"
       start
     end
   end

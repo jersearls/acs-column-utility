@@ -1,16 +1,17 @@
 require_relative '../lib/toolbox'
+require_relative "log"
 require 'pry'
 require 'json'
 
 class Browse
   include Toolbox
   def title_size
-    puts
-    puts "Type \"f\" to view full column names or \"a\" for abbreviated column names"
+    Log.puts
+    Log.puts "Type \"f\" to view full column names or \"a\" for abbreviated column names"
     print "> "
-    choice2 = gets.chomp.downcase
-    puts
-    puts "RESULTS:"
+    choice2 = Log.gets.chomp.downcase
+    Log.puts
+    Log.puts "RESULTS:"
     if choice2 == "a"
       create_hash('../data/abbv_subject.json')
     elsif choice2 == "f"
@@ -28,14 +29,14 @@ class Browse
 
   def choose
     print "> "
-    choice = gets.chomp.to_i
+    choice = Log.gets.chomp.to_i
     case choice
     when 1..27
       then
-      puts
-      puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
+      Log.puts
+      Log.puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
       print "> "
-      choice3 = gets.chomp.downcase
+      choice3 = Log.gets.chomp.downcase
       if choice3 == "c"
         title_size.map {|(k, v)|
           if v == subject_hash[choice]
@@ -44,8 +45,8 @@ class Browse
       elsif choice3 == "n"
         title_size.map {|(k, v)|
           if v == subject_hash[choice]
-            puts k.downcase.gsub(/ $/, '')
-            puts
+            Log.puts k.downcase.gsub(/ $/, '')
+            Log.puts
           end}
       else
         error

@@ -1,3 +1,5 @@
+require_relative "log"
+
 module Toolbox
   def subject_hash
     { 1 => "Race", 2 => "Ancestry", 3 => "Foreign Birth",
@@ -14,8 +16,8 @@ module Toolbox
   end
 
   def error
-    puts "*****Error, entry not valid!******"
-    puts
+    Log.puts "*****Error, entry not valid!******"
+    Log.puts
   end
 
   def create_hash(file)
@@ -25,33 +27,33 @@ module Toolbox
 
   def try_again(action)
     @action = action
-    puts
-    puts "_______________________________________________________"
-    puts "Would you like to continue #{@action}? (y/n)"
+    Log.puts
+    Log.puts "_______________________________________________________"
+    Log.puts "Would you like to continue #{@action}? (y/n)"
     print "> "
-    choice = gets.chomp.downcase
+    choice = Log.gets.chomp.downcase
     if choice == "y"
-      puts
-      puts "_______________________________________________________"
+      Log.puts
+      Log.puts "_______________________________________________________"
     elsif choice == "n"
-      puts
-      puts "_______________________________________________________"
+      Log.puts
+      Log.puts "_______________________________________________________"
       home
     elsif choice == "q" || choice == "quit" || choice == "exit"
       exit
     else
-      puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
-      puts
+      Log.puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
+      Log.puts
       try_again(action)
     end
   end
 
   def menu(function)
     @function = function
-    puts "Welcome to #{@function}."
-    puts "Please type the number corresponding to the subject area you'd like to #{@function}."
+    Log.puts "Welcome to #{@function}."
+    Log.puts "Please type the number corresponding to the subject area you'd like to #{@function}."
 
-    puts """
+    Log.puts """
     1. Race
     2. Ancestry
     3. Foreign Birth
