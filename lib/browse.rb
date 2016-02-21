@@ -11,9 +11,9 @@ class Browse
   choice2 = gets.chomp.downcase
   puts
   puts "RESULTS:"
-    if choice2 == "abbv"
+    if choice2 == "a"
       create_hash('../data/abbv_subject.json')
-    elsif choice2 == "full"
+    elsif choice2 == "f"
       create_hash('../data/full_subject.json')
     else
     error
