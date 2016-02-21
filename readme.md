@@ -1,5 +1,7 @@
 # ACS Census Column Utility
 
+[![Build Status](https://travis-ci.org/jersearls/acs-column-utility.svg?branch=master)](https://travis-ci.org/jersearls/acs-column-utility)
+
 The ACS Census Column Utility is a command line interface that allows users to search,
 browse and convert column names created by the
 [Census Column Title Generator](https://github.com/jersearls/acs-census-title-generator).
