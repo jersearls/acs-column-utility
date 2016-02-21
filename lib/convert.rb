@@ -4,14 +4,9 @@ require 'pry'
 
 class Convert
   include Toolbox
-  def read_parse_sym
-    title_string = File.read('../data/names.json')
-    title_hash = JSON.parse(title_string)
-    Hash[title_hash.map{|(k,v)| [k.downcase.to_sym,v.downcase.gsub(/ $/, '').to_sym]}]
-  end
   def start_convert
-    puts """Welcome to convert! Would you like to convert:
-    1. An abberviated column name to a full column name
+    puts """Welcome to convert! Which would you like to convert?
+    1. An abbreviated column name to a full column name
     2. A full column name to an abbreviated column name
     """
     print "> "
@@ -23,11 +18,13 @@ class Convert
         puts
         puts "RESULTS:"
         puts
-
+        col_name_hash = Hash[create_hash('../data/names.json').map do
+          |(k,v)| [k.downcase.to_sym,v.downcase.gsub(/ $/, '').to_sym]
+        end]
         if conchoice == 1
-          hash = read_parse_sym
+          hash = col_name_hash
         elsif conchoice == 2
-          hash = read_parse_sym.invert
+          hash = col_name_hash.invert
         end
           user_input.each do |title|
             if value = hash[title]
@@ -42,9 +39,7 @@ class Convert
         error
         start_convert
       end
-    try_again("conversion")
+    try_again("converting column names")
     start_convert
   end
-
-
 end
