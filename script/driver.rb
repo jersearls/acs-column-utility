@@ -1,7 +1,8 @@
-require '../lib/search.rb'
-require '../lib/browse.rb'
-require '../lib/convert.rb'
+require '../lib/search'
+require '../lib/browse'
+require '../lib/convert'
 require '../lib/pusheen'
+
 require 'pry'
 
 def home
