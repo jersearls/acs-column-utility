@@ -15,23 +15,22 @@ class Search
     puts
     @results = []
     @choice2.each do |word|
-      @count = 0
       search_entry = word.to_str
       create_hash('../data/full_subject.json').map do |(k, v)|
         if v == subject_hash[@choice]
           title = k.downcase.to_str
           if title.include? search_entry
             @results << title
-            @count += 1
           end
         end
       end
     end
+    @results.uniq!
   end
 
   def result_count
     puts
-    puts "*** Search Complete: #{@count} Results Found ***"
+    puts "*** Search Complete: #{@results.length} Results Found ***"
   end
 
   def user_entry
@@ -51,12 +50,12 @@ class Search
       choice3 = gets.chomp.downcase
       if choice3 == "c"
         search_results
-        print @results.uniq.join(", ").to_str
+        print @results.join(", ").to_str
         puts
         result_count
       elsif choice3 == "n"
         search_results
-        @results.uniq.each {|result| puts result; puts}
+        @results.each {|result| puts result; puts}
         result_count
       else
         error

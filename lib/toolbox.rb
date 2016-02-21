@@ -42,7 +42,7 @@ module Toolbox
     else
       puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
       puts
-      try_again
+      try_again(action)
     end
   end
 
@@ -82,5 +82,3 @@ module Toolbox
     """
   end
 end
-
-
