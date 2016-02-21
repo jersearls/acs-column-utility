@@ -38,7 +38,7 @@ module Toolbox
     elsif choice == "n"
       Log.puts
       Log.puts "_______________________________________________________"
-      home
+      Driver.start #<-- TODO, stuff in lib/ shouldn't know about stuff in script/
     elsif choice == "q" || choice == "quit" || choice == "exit"
       exit
     else
