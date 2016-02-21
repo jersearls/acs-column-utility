@@ -1,5 +1,6 @@
 require "test_helper"
 
+ENV['DEFER_DRIVER'] = "true"
 require "driver"
 
 class TestDriver < Minitest::Test
