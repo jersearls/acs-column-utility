@@ -1,7 +1,7 @@
-require '../lib/search'
-require '../lib/browse'
-require '../lib/convert'
-require '../lib/pusheen'
+require_relative '../lib/search'
+require_relative '../lib/browse'
+require_relative '../lib/convert'
+require_relative '../lib/pusheen'
 
 require 'pry'
 

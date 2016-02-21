@@ -1,4 +1,4 @@
-require '../lib/toolbox'
+require_relative '../lib/toolbox'
 require 'pry'
 require 'json'
 
