@@ -21,7 +21,7 @@ module Toolbox
   end
 
   def create_hash(file)
-    title_string = File.read(file)
+    title_string = File.read(File.join(File.dirname(__FILE__), file))
     JSON.parse(title_string)
   end
 
