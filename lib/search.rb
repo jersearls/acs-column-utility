@@ -15,7 +15,7 @@ class Search
     puts
     @results = []
     @choice2.each do |word|
-    @count = 0
+      @count = 0
       search_entry = word.to_str
       create_hash('../data/full_subject.json').map do |(k, v)|
         if v == subject_hash[@choice]
@@ -38,35 +38,35 @@ class Search
     print "> "
     @choice = gets.chomp.to_i
     case @choice
-      when 1..27
+    when 1..27
       then
+      puts
+      puts "Please enter words or a word to search. (ex. African American)"
+      print "> "
+      @choice2 = gets.chomp.downcase.split(" ")
+      puts
+      puts
+      puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
+      print "> "
+      choice3 = gets.chomp.downcase
+      if choice3 == "c"
+        search_results
+        print @results.uniq.join(", ").to_str
         puts
-        puts "Please enter words or a word to search. (ex. African American)"
-        print "> "
-        @choice2 = gets.chomp.downcase.split(" ")
-        puts
-        puts
-        puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
-        print "> "
-        choice3 = gets.chomp.downcase
-          if choice3 == "c"
-              search_results
-              print @results.uniq.join(", ").to_str
-              puts
-              result_count
-          elsif choice3 == "n"
-              search_results
-              @results.uniq.each {|result| puts result; puts}
-              result_count
-          else
-              error
-              try_again("searching")
-              start_search
-          end
+        result_count
+      elsif choice3 == "n"
+        search_results
+        @results.uniq.each {|result| puts result; puts}
+        result_count
+      else
+        error
         try_again("searching")
         start_search
       end
-      error
+      try_again("searching")
       start_search
+    end
+    error
+    start_search
   end
 end
