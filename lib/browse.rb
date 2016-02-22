@@ -1,24 +1,35 @@
-require '../lib/toolbox'
+require_relative '../lib/toolbox'
+require_relative "log"
 require 'pry'
 require 'json'
 
 class Browse
   include Toolbox
+  def initialize
+    @results = []
+  end
+
+
   def title_size
-    puts
-    puts "Type \"f\" to view full column names or \"a\" for abbreviated column names"
-    print "> "
-    choice2 = gets.chomp.downcase
-    puts
-    puts "RESULTS:"
-    if choice2 == "a"
-      create_hash('../data/abbv_subject.json')
-    elsif choice2 == "f"
-      create_hash('../data/full_subject.json')
-    else
-      error
-      title_size
-    end
+      Log.puts
+      Log.puts "Type \"f\" to view full column names or \"a\" for abbreviated column names"
+      Log.print "> "
+      choice2 = Log.gets.chomp.downcase
+      if choice2 == "a"
+        create_hash('../data/abbv_subject.json').map do |(k, v)|
+          if v == subject_hash[@choice]
+            @results << k.downcase.gsub(/ $/, '')
+          end
+        end
+      elsif choice2 == "f"
+        create_hash('../data/full_subject.json').map do |(k, v)|
+          if v == subject_hash[@choice]
+            @results << k.downcase.gsub(/ $/, '')
+          end
+        end
+      else
+        error
+      end
   end
 
   def start_browse
@@ -27,34 +38,34 @@ class Browse
   end
 
   def choose
-    print "> "
-    choice = gets.chomp.to_i
-    case choice
+    Log.print "> "
+    @choice = Log.gets.chomp.to_i
+    case @choice
     when 1..27
       then
-      puts
-      puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
-      print "> "
-      choice3 = gets.chomp.downcase
-      if choice3 == "c"
-        title_size.map {|(k, v)|
-          if v == subject_hash[choice]
-            print "#{k.downcase.gsub(/ $/, '')}, "
-          end}
-      elsif choice3 == "n"
-        title_size.map {|(k, v)|
-          if v == subject_hash[choice]
-            puts k.downcase.gsub(/ $/, '')
-            puts
-          end}
-      else
-        error
-        start_browse
-      end
-      try_again("browsing")
-      start_browse
+      Log.puts
+      Log.puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
+      Log.print "> "
+      choice3 = Log.gets.chomp.downcase
+        if choice3 == "c"
+          title_size
+          Log.puts
+          Log.puts "RESULTS:"
+          Log.print @results.uniq.join(", ").to_str
+          Log.puts
+        elsif choice3 == "n"
+          title_size
+          Log.puts
+          Log.puts "RESULTS:"
+          @results.uniq.each {|result| Log.puts result; Log.puts}
+          Log.puts
+        else
+          error
+        end
+    else
+      error
     end
-    error
-    choose
+    Log.puts "_______________________________________________________"
+    Log.puts
   end
 end

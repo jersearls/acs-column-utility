@@ -1,3 +1,5 @@
+require_relative "log"
+
 module Toolbox
   def subject_hash
     { 1 => "Race", 2 => "Ancestry", 3 => "Foreign Birth",
@@ -14,44 +16,45 @@ module Toolbox
   end
 
   def error
-    puts "*****Error, entry not valid!******"
-    puts
+    Log.puts "*****Error, entry not valid!******"
+    Log.puts
+    sleep 1
   end
 
   def create_hash(file)
-    title_string = File.read(file)
+    title_string = File.read(File.join(File.dirname(__FILE__), file))
     JSON.parse(title_string)
   end
 
   def try_again(action)
+    while true
     @action = action
-    puts
-    puts "_______________________________________________________"
-    puts "Would you like to continue #{@action}? (y/n)"
-    print "> "
-    choice = gets.chomp.downcase
-    if choice == "y"
-      puts
-      puts "_______________________________________________________"
-    elsif choice == "n"
-      puts
-      puts "_______________________________________________________"
-      home
-    elsif choice == "q" || choice == "quit" || choice == "exit"
-      exit
-    else
-      puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
-      puts
-      try_again(action)
+      Log.puts
+      Log.puts "_______________________________________________________"
+      Log.puts "Would you like to continue #{@action}? (y/n)"
+      Log.print "> "
+      choice = Log.gets.chomp.downcase
+      if choice == "y"
+        Log.puts
+        Log.puts "_______________________________________________________"
+        break
+      elsif choice == "n"
+        Log.puts
+        Log.puts "_______________________________________________________"
+        break
+      else
+        Log.puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
+        Log.puts
+      end
     end
   end
 
   def menu(function)
     @function = function
-    puts "Welcome to #{@function}."
-    puts "Please type the number corresponding to the subject area you'd like to #{@function}."
+    Log.puts "Welcome to #{@function}."
+    Log.puts "Please type the number corresponding to the subject area you'd like to #{@function}."
 
-    puts """
+    Log.puts """
     1. Race
     2. Ancestry
     3. Foreign Birth

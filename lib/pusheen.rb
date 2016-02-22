@@ -1,7 +1,9 @@
+require_relative "log"
+
 module Pusheen
   def self.meow
 
-    puts """
+    Log.puts """
                 \"MEOW!\"
     ───────────────────────────────────────
     ───▐▀▄───────▄▀▌───▄▄▄▄▄▄▄─────────────
