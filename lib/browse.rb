@@ -9,6 +9,13 @@ class Browse
     @results = []
   end
 
+  def hash_map(file)
+    create_hash(file).map do |(k, v)|
+      if v == subject_hash[@choice]
+        @results << k.downcase.gsub(/ $/, '')
+      end
+    end
+  end
 
   def title_size
       Log.puts
@@ -16,17 +23,9 @@ class Browse
       Log.print "> "
       choice2 = Log.gets.chomp.downcase
       if choice2 == "a"
-        create_hash('../data/abbv_subject.json').map do |(k, v)|
-          if v == subject_hash[@choice]
-            @results << k.downcase.gsub(/ $/, '')
-          end
-        end
+        hash_map('../data/abbv_subject.json')
       elsif choice2 == "f"
-        create_hash('../data/full_subject.json').map do |(k, v)|
-          if v == subject_hash[@choice]
-            @results << k.downcase.gsub(/ $/, '')
-          end
-        end
+        hash_map('../data/full_subject.json')
       else
         error
       end
@@ -34,10 +33,6 @@ class Browse
 
   def start_browse
     menu("browse")
-    choose
-  end
-
-  def choose
     Log.print "> "
     @choice = Log.gets.chomp.to_i
     case @choice
