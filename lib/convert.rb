@@ -38,9 +38,8 @@ class Convert
       end
     else
       error
-      start_convert
     end
-    try_again("converting column names")
-    start_convert
+    Log.puts "_______________________________________________________"
+    Log.puts
   end
 end

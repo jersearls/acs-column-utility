@@ -32,7 +32,6 @@ class Search
   def result_count
     Log.puts
     Log.puts "*** Search Complete: #{@results.length} Results Found ***"
-    Log.puts "_______________________________________________________"
   end
 
   def user_entry
@@ -65,5 +64,7 @@ class Search
     else
       error
     end
+    Log.puts "_______________________________________________________"
+    Log.puts
   end
 end

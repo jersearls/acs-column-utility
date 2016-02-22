@@ -53,19 +53,19 @@ class Browse
           Log.puts "RESULTS:"
           Log.print @results.uniq.join(", ").to_str
           Log.puts
-          Log.puts "_______________________________________________________"
         elsif choice3 == "n"
           title_size
           Log.puts
           Log.puts "RESULTS:"
           @results.uniq.each {|result| Log.puts result; Log.puts}
           Log.puts
-          Log.puts "_______________________________________________________"
         else
           error
         end
     else
       error
     end
+    Log.puts "_______________________________________________________"
+    Log.puts
   end
 end
