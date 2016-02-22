@@ -8,8 +8,7 @@ require 'pry'
 
 class Driver
   def self.start
-    home_menu = true
-    while home_menu == true
+    while true
       Log.puts "Welcome to the Edgewater ACS Census Assistant!"
       Log.puts
       Log.puts "Type the corresponding number to browse available columns,
@@ -32,7 +31,7 @@ search column names for keywords or convert selected column names."
         Log.puts
         Convert.new.start_convert
       elsif choice == 4
-        home_menu = false
+        break
       elsif choice == 5
         Pusheen.meow
       else

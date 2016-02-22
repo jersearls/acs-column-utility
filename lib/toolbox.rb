@@ -18,6 +18,7 @@ module Toolbox
   def error
     Log.puts "*****Error, entry not valid!******"
     Log.puts
+    sleep 1
   end
 
   def create_hash(file)
