@@ -32,6 +32,7 @@ class Search
   def result_count
     Log.puts
     Log.puts "*** Search Complete: #{@results.length} Results Found ***"
+    Log.puts
   end
 
   def user_entry
@@ -49,24 +50,19 @@ class Search
       Log.puts "Type \"c\" for comma separated results or \"n\" for new line separated results"
       Log.print "> "
       choice3 = Log.gets.chomp.downcase
-      if choice3 == "c"
-        search_results
-        Log.print @results.join(", ").to_str
-        Log.puts
-        result_count
-      elsif choice3 == "n"
-        search_results
-        @results.each {|result| Log.puts result; Log.puts}
-        result_count
-      else
-        error
-        try_again("searching")
-        start_search
-      end
-      try_again("searching")
-      start_search
+        if choice3 == "c"
+          search_results
+          Log.print @results.join(", ").to_str
+          Log.puts
+          result_count
+        elsif choice3 == "n"
+          search_results
+          @results.each {|result| Log.puts result; Log.puts}
+          result_count
+        else
+          error
+        end
+    else error
     end
-    error
-    start_search
   end
 end

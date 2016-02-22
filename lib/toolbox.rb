@@ -26,23 +26,25 @@ module Toolbox
   end
 
   def try_again(action)
+    while true
     @action = action
-    Log.puts
-    Log.puts "_______________________________________________________"
-    Log.puts "Would you like to continue #{@action}? (y/n)"
-    Log.print "> "
-    choice = Log.gets.chomp.downcase
-    if choice == "y"
       Log.puts
       Log.puts "_______________________________________________________"
-    elsif choice == "n"
-      Log.puts
-      Log.puts "_______________________________________________________"
-      Driver.start #<-- TODO, stuff in lib/ shouldn't know about stuff in script/
-    else
-      Log.puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
-      Log.puts
-      try_again(action)
+      Log.puts "Would you like to continue #{@action}? (y/n)"
+      Log.print "> "
+      choice = Log.gets.chomp.downcase
+      if choice == "y"
+        Log.puts
+        Log.puts "_______________________________________________________"
+        break
+      elsif choice == "n"
+        Log.puts
+        Log.puts "_______________________________________________________"
+        break
+      else
+        Log.puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
+        Log.puts
+      end
     end
   end
 
