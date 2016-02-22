@@ -39,8 +39,6 @@ module Toolbox
       Log.puts
       Log.puts "_______________________________________________________"
       Driver.start #<-- TODO, stuff in lib/ shouldn't know about stuff in script/
-    elsif choice == "q" || choice == "quit" || choice == "exit"
-      exit
     else
       Log.puts "That is not a valid response. Type \"y\", \"n\" or \"exit\" to quit"
       Log.puts

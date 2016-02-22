@@ -8,38 +8,43 @@ require 'pry'
 
 class Driver
   def self.start
-    Log.puts "Welcome to the Edgewater ACS Census Assistant!"
-    Log.puts
-    Log.puts "Type the corresponding number to browse available columns,
+    home_menu = true
+    while home_menu == true
+      Log.puts "Welcome to the Edgewater ACS Census Assistant!"
+      Log.puts
+      Log.puts "Type the corresponding number to browse available columns,
 search column names for keywords or convert selected column names."
-    Log.puts """
-  1. Browse
-  2. Search
-  3. Convert
-  4. Exit
-    """
-    Log.print "> "
-    choice = Log.gets.chomp.to_i
-    if choice == 1
-      Log.puts
-      Browse.new.start_browse
-    elsif choice == 2
-      Log.puts
-      Search.new.start_search
-    elsif choice == 3
-      Log.puts
-      Convert.new.start_convert
-    elsif choice == 4
-      exit
-    elsif choice == 5
-      Pusheen.meow
-      start
-    else
-      Log.puts "Invalid Entry."
-      Log.puts
-      Log.puts "_______________________________________________________"
-      start
+      Log.puts """
+    1. Browse
+    2. Search
+    3. Convert
+    4. Exit
+      """
+      Log.print "> "
+      choice = Log.gets.chomp.to_i
+      if choice == 1
+        Log.puts
+        Browse.new.start_browse
+      elsif choice == 2
+        Log.puts
+        Search.new.start_search
+      elsif choice == 3
+        Log.puts
+        Convert.new.start_convert
+      elsif choice == 4
+        home_menu == false
+        break
+      elsif choice == 5
+        Pusheen.meow
+        Driver.start
+      else
+        Log.puts "Invalid Entry."
+        Log.puts
+        Log.puts "_______________________________________________________"
+        Driver.start
+      end
     end
+    exit
   end
 end
 
