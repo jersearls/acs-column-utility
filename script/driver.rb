@@ -32,19 +32,15 @@ search column names for keywords or convert selected column names."
         Log.puts
         Convert.new.start_convert
       elsif choice == 4
-        home_menu == false
-        break
+        home_menu = false
       elsif choice == 5
         Pusheen.meow
-        Driver.start
       else
         Log.puts "Invalid Entry."
         Log.puts
         Log.puts "_______________________________________________________"
-        Driver.start
       end
     end
-    exit
   end
 end
 
