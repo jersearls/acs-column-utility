@@ -6,6 +6,13 @@ The ACS Census Column Utility is a command line interface that allows users to s
 browse and convert column names created by the
 [Census Column Title Generator](https://github.com/jersearls/acs-census-title-generator).
 
+# Running ACS Census Column Utility
+```
+$ cd script
+$ ruby driver.rb
+
+```
+
 # Usage Example
 
 Browse
