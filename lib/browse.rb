@@ -15,6 +15,9 @@ class Browse
         @results << k.downcase.gsub(/ $/, '')
       end
     end
+    Log.puts
+    Log.puts "*** RESULTS ***"
+    Log.puts
   end
 
   def title_size
@@ -44,22 +47,17 @@ class Browse
       choice3 = Log.gets.chomp.downcase
         if choice3 == "c"
           title_size
-          Log.puts
-          Log.puts "RESULTS:"
           Log.print @results.uniq.join(", ").to_str
-          Log.puts
         elsif choice3 == "n"
           title_size
-          Log.puts
-          Log.puts "RESULTS:"
           @results.uniq.each {|result| Log.puts result; Log.puts}
-          Log.puts
         else
           error
         end
     else
       error
     end
+    Log.puts
     Log.puts "_______________________________________________________"
     Log.puts
   end
