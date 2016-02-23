@@ -15,7 +15,7 @@ $ ruby driver.rb
 
 # Usage Example
 
-Browse
+Browse Function
 
 To browse available titles, select "1" at the top level menu.
 

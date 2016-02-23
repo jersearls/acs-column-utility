@@ -35,10 +35,12 @@ search column names for keywords or convert selected column names."
       elsif choice == 5
         Pusheen.meow
       else
-        Log.puts "Invalid Entry."
-        Log.puts
-        Log.puts "_______________________________________________________"
+        Log.puts "*****Error, entry not valid!******"
       end
+      Log.puts
+      Log.puts "_______________________________________________________"
+      Log.puts
+      sleep 1.5
     end
   end
 end

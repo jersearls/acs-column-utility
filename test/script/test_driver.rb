@@ -6,7 +6,7 @@ require "driver"
 
 class TestDriver < Minitest::Test
   def setup
-    @fake_io = FakeIo.new(["1","1","c","f","n","4"])
+    @fake_io = FakeIo.new(["1","1","c","f","4"])
     Log.provider = @fake_io
   end
 

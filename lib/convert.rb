@@ -17,7 +17,7 @@ class Convert
       Log.print "> "
       user_input = Log.gets.chomp.split(", ").map(&:to_sym)
       Log.puts
-      Log.puts "RESULTS:"
+      Log.puts "*** RESULTS ***"
       Log.puts
       col_name_hash = Hash[create_hash('../data/names.json').map do
         |(k,v)| [k.downcase.to_sym,v.downcase.gsub(/ $/, '').to_sym]
@@ -39,7 +39,5 @@ class Convert
     else
       error
     end
-    Log.puts "_______________________________________________________"
-    Log.puts
   end
 end

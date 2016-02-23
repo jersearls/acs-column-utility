@@ -57,8 +57,5 @@ class Browse
     else
       error
     end
-    Log.puts
-    Log.puts "_______________________________________________________"
-    Log.puts
   end
 end

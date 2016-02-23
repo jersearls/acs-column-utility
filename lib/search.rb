@@ -5,11 +5,6 @@ require 'pry'
 
 class Search
   include Toolbox
-  def start_search
-    menu("search")
-    user_entry
-  end
-
   def search_results
     Log.puts
     Log.puts "*** Results for Subject Area: #{subject_hash[@choice]} ***"
@@ -34,7 +29,8 @@ class Search
     Log.puts "*** Search Complete: #{@results.length} Results Found ***"
   end
 
-  def user_entry
+  def start_search
+    menu("search")
     Log.print "> "
     @choice = Log.gets.chomp.to_i
     case @choice
@@ -64,7 +60,5 @@ class Search
     else
       error
     end
-    Log.puts "_______________________________________________________"
-    Log.puts
   end
 end
